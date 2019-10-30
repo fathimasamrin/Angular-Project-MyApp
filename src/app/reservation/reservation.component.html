@@ -1,0 +1,83 @@
+<h1 style="text-align:center">
+   ReservationForm
+  </h1>
+  <div class="login">
+    <h2 class="login-header">Reservation form</h2>
+    <h4 class="login-header">* denotes mandatory</h4>
+    <form [formGroup]="reservationForm" class="login-container" (ngSubmit)="reservesubmit()">
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.firstname.errors }">
+            <label>First Name*</label><br>
+            <input type="First Name" placeholder="First_name" formControlName="firstname">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.firstname.errors" class="help-block">
+            <div *ngIf="formControls.firstname.errors.required">First name is required</div>
+        </div>
+        
+  
+        
+       <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+          <label>Email*</label><br>
+          <input type="email" placeholder="Email" formControlName="email">
+      </p>
+
+    <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+      <div *ngIf="formControls.email.errors.required">Email is required</div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.cityName.errors }">
+    <label>Select tour package:*</label><br>
+    <select class="custom-select" (change)="changeCity($event)" formControlName="cityName">
+    
+        <option value="">Choose your city</option>
+        <option *ngFor="let city of City" [ngValue]="city">{{city}}</option>
+    </select>
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.cityName.errors" class="help-block">
+        <div *ngIf="formControls.cityName.errors.required">choose city</div>
+    </div>
+
+    
+
+
+  
+      
+
+      <!-- <p [ngClass]="{ 'has-error': isSubmitted && formControls.arrivaldate.errors }">
+          <label>Arrival Date*:</label><br>
+          <input type="date" name="date" placeholder="m/d/y" required="mandatory"><br>
+  
+      </p>
+      <div *ngIf="isSubmitted && formControls.arrivaldate.errors" class="help-block">
+          <div *ngIf="formControls.arrivaldate.errors.required">Date is required</div>
+      </div> -->
+
+      <p>
+          <p [ngClass]="{ 'has-error': isSubmitted && formControls.number.errors }">
+              <label>Number of Persons*:</label><br>
+              <input type="number" name="number" placeholder="UNKNOWN_TYPE" formControlName="number" ><br>
+      </p>
+      <div *ngIf="isSubmitted && formControls.number.errors" class="help-block">
+          <div *ngIf="formControls.number.errors.required">number is required</div>
+      </div>
+
+       <p>
+          <p [ngClass]="{ 'has-error': isSubmitted && formControls.facility.errors }">
+              <label>what would you want to avail?*</label><br>
+              Boarding<input type="checkbox" name="facility" formControlName="boarding" /><br>
+              Fooding<input type="checkbox" name="facility" formControlName="fooding"/><br>
+              Sight Seeing<input type="checkbox" name="facility" formControlName="Sight Seeing"/><br>
+        </p> 
+        <!-- <div *ngIf="isSubmitted && formControls.facility.errors" class="help-block"> -->
+            <!-- <div *ngIf="formControls.facility.errors.required"> choose atleaste one</div>
+        </div> -->
+
+         
+       
+      
+      <input type="submit" value="submit">
+     
+    </form>
+  </div>
